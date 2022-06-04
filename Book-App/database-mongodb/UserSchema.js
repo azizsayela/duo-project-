@@ -10,9 +10,8 @@ const UserSchema = new mongoose.Schema({
     type: String,
     default: "logged",
   },
-books:[Object]
 });
 
-const User = mongoose.model("User", UserSchema);
+const Useer = mongoose.model("Useer", UserSchema);
 
-module.exports = User;
+module.exports = Useer;

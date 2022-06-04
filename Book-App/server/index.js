@@ -1,6 +1,9 @@
 const express = require("express");
 const axios = require("axios");
 const Books = require("../database-mongodb/BookSchema.js");
+const Useer = require("../database-mongodb/UserSchema");
+const Rentbook = require("../database-mongodb/RentBookSchema");
+// const RentDemands=require("../")
 
 // const Films = require("../database-mongodb/Movie_Schema");
 // const { findByIdAndDelete } = require("../database-mongodb/Movie_Schema");
@@ -60,6 +63,7 @@ let getAllBooks = () => {
 
 // get request to get all films from database
 app.get("/api/books/getall", function (req, res) {
+  console.log("sdsds");
   Books.find().then((result) => {
     res.status(200).json(result);
   });
@@ -75,6 +79,7 @@ app.post("/api/books/create", function (req, res) {
     });
 });
 // delete a book by id (Admin)
+
 app.delete("/api/books/delete/:_id", function (req, res) {
   Books.findByIdAndDelete(req.params._id)
     .then((result) => {
@@ -84,12 +89,85 @@ app.delete("/api/books/delete/:_id", function (req, res) {
       if (err) console.log(err);
     });
 });
-// update a film (Admin)
+
+// update a book (Admin)
 app.put("/api/books/update/:_id", function (req, res) {
   Books.findByIdAndUpdate(req.params._id, req.body).then((result) => {
     res.status(200).json("data updated");
   });
 });
+
+app.post("/user/login", (req, res) => {
+  // const existingUser = User.findOne(req.body.email) ;
+  const { email, password } = req.body;
+  if (!password || !email) {
+    return res.status(400).json({ message: "Password incorrect or username" });
+  }
+
+  Useer.findOne({ email, password })
+    .then((user) => {
+      if (user) {
+        res.status(200).json({ message: "Login successful", user });
+      } else {
+        res.status(401).json({
+          message: "Login successful",
+          error: "email not found",
+        });
+      }
+    })
+    .catch((err) => {
+      res.status(400).json({
+        messagd: "err",
+        error: err.message,
+      });
+    });
+});
+
+app.post("/user/signin", (req, res) => {
+  const { username, email, password } = req.body;
+  const user = new Useer({
+    username,
+    email,
+    password,
+  });
+
+  Useer.findOne({ email }).then((user) => {
+    if (user) return res.status(400).json({ message: "User already exists." });
+  });
+  user.save((error, data) => {
+    if (error) {
+      return res.status(400).json({
+        message: "Something went wrong",
+      });
+    }
+    if (data) {
+      return res.status(201).json({
+        user: data,
+      });
+    }
+  });
+});
+
+
+
+app.post("/api/books/commande", function (req, res) {
+  Rentbook.create(req.body)
+    .then((data) => {
+      res.json(data);
+    })
+    .catch((err) => {
+      if (err) res.status(400).send("failed");
+    });
+});
+
+
+app.get("/api/books/commande/get", function (req, res) {
+  Rentbook.find().then((result) => {
+    res.status(200).json(result);
+  });
+});
+
+
 
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);

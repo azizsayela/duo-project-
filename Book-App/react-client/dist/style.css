@@ -7,15 +7,33 @@ body {
 
   font-size: 1.1em;
   background-color: #ffffff;
+  
+
 }
-.film-title {
+background-image{
+url:("https://wallpapercave.com/wp/IlpLRYK.jpg")
+}
+.book-title {
   text-align: center;
   font-size: larger;
-  font-family: fantasy;
+  font-family:'Courier New', Courier, monospace
   color: black;
+}
+.book{
+  text-align: center;
 }
 h2 {
   color: #2c3e50;
+}
+
+
+.card{
+  margin: auto;
+  padding: 1rem;
+  width: 250px;
+  height: 100;
+  box-shadow: 5px 5px 10px;
+  align-items: center;
 }
 /* .film-img:hover {
   filter: grayscale(0%);
@@ -268,15 +286,29 @@ button {
   margin-right: 5px;
   font-size: 1.1em;
 }
+.command{
+
+  text-align: center;
+  box-sizing: border-box;
+  border: 2px black;
+  border: solid;
+  width: 337px;
+  margin-top: 24px;
+  text-align: center;
+  margin-left: 294px;
+  background-color: darkseagreen;
+}
+
 .film-img {
   height: 300px;
   width: 363px;
 }
-.film-container {
+.book-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  grid-gap: 20px;
+  grid-gap: 40px;
   align-items: stretch;
+  margin-top: 100px;
 }
 .one-film-container {
 }
@@ -301,7 +333,16 @@ button {
 }
 .btn-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+}
+.update-btn{
+  margin-top: 10px;
+  margin-right: 11px;
+}
+.boxx{
+  display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
 }
 .h1-h1 {
   letter-spacing: -1px;
@@ -336,6 +377,10 @@ button {
 .center-center {
   align-items: center;
   justify-content: center;
+}
+.btn-container-1{
+  display: flex;
+  justify-content: space-evenly;
 }
 .box-root {
   box-sizing: border-box;
@@ -644,4 +689,76 @@ button {
   font-size: 1.5rem;
   color: #eee;
   padding: 1rem 0;
+}
+
+.create-book-container{
+  
+display: flex;
+flex-direction: column;
+align-items: center;
+margin-top: 111px;
+
+}
+
+
+.add-book{
+  text-align: center;
+}
+
+
+.form-container {
+  width: 360px;
+  background-color: white;
+  margin: auto;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  padding: 10px;
+  margin-top:117px
+}
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding: 10px;
+}
+
+.success-message {
+  font-family: "Roboto", sans-serif;
+  background-color: #3f89f8;
+  padding: 15px;
+  color: white;
+}
+
+.form-field {
+  margin: 10px 0 10px 0;
+  padding: 15px;
+  font-size: 16px;
+  border: 0;
+  font-family: "Roboto", sans-serif;
+}
+
+span {
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  color: red;
+  margin-bottom: 15px;
+}
+
+input {
+  background: #f2f2f2;
+}
+
+.error {
+  border-style: solid;
+  border: 2px solid #ffa4a4;
+}
+
+button {
+  background: #4caf50;
+  color: white;
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: default;
 }
